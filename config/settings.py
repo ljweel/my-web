@@ -28,7 +28,12 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["ljweel.dev", ]
+ALLOWED_HOSTS = [
+    "ljweel.dev", 
+    "localhost", 
+    "www.ljweel.dev",
+    "127.0.0.1",
+]
 
 # Nginx가 서빙할 정적 파일이 모일 실제 경로
 STATIC_ROOT = BASE_DIR / 'staticfiles'

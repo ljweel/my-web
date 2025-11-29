@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  # PostgreSQL
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: my_web_db
+      POSTGRES_USER: my_web_user
+      POSTGRES_PASSWORD: 1234
+    volumes:
+      - ./data:/var/lib/postgresql/data/
+      - ./postgreSQL/init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: always
+
+  # Django/Gunicorn
+  web:
+    build: 
+      context: .
+      dockerfile: Dockerfile.web
+    container_name: ljweel_web
+    environment:
+      - DB_NAME=my_web_db
+      - DB_USER=my_web_user
+      - DB_PASSWORD=1234
+      - DB_HOST=db
+    volumes:
+      # 개발 편의를 위해 소스 코드와 정적 파일을 호스트와 공유
+      - .:/usr/src/app
+      - ./staticfiles:/usr/src/app/staticfiles
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+
+  # Nginx
+  nginx:
+    image: nginx:latest
+    container_name: ljweel-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./staticfiles:/usr/src/app/staticfiles
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/cert.pem:/etc/ssl/cert.pem
+      - ./nginx/priv.key:/etc/ssl/priv.key
+    depends_on:
+      - web
+    restart: always

@@ -33,6 +33,7 @@ ALLOWED_HOSTS = [
     "localhost", 
     "www.ljweel.dev",
     "127.0.0.1",
+    "web",
 ]
 
 # Nginx가 서빙할 정적 파일이 모일 실제 경로

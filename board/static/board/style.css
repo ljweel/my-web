@@ -13,7 +13,6 @@ body {
 }
 
 .nav-container {
-    max-width: 900px;
     margin: auto;
     padding: 15px;
     display: flex;

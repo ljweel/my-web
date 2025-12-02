@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   # PostgreSQL
   db:
@@ -15,7 +13,7 @@ services:
 
   # Django/Gunicorn
   web:
-    build: 
+    build:
       context: .
       dockerfile: Dockerfile.web
     container_name: ljweel_web

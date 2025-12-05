@@ -2,10 +2,12 @@ from django.urls import path
 
 from . import views
 
-app_name = 'board'
+app_name = 'post'
 urlpatterns = [
     # ex: /board/
     path('', views.IndexView.as_view(), name='index'),
-    path('post/', views.postListView.as_view(), name='postList'),
-    
+    path('post/', views.postListView.as_view(), name='list'),
+    path('post/<int:pk>/', views.postDetailView.as_view(), name='detail'),
+    path('post/create/', views.postCreateView.as_view(), name='create'),
+
 ]

@@ -36,6 +36,10 @@ ALLOWED_HOSTS = [
     "web",
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://localhost'
+]
+
 # Nginx가 서빙할 정적 파일이 모일 실제 경로
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 

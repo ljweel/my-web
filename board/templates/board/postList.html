@@ -1,6 +1,10 @@
 {% extends "./base.html" %}
 
+{% block title %}블로그 목록{% endblock %}
+
+
 {% block content %}
+    <a href="{% url 'post:create' %}">Create Post</a>
     
     {% if latest_post_list %}
         <ul>

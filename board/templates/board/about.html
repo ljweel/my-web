@@ -1,0 +1,65 @@
+{% extends "./base.html" %}
+{% block title %}About | ljweel.dev{% endblock %}
+
+{% block content %}
+<section class="about-container">
+    <h1 class="about-title">My Web – 개인 포트폴리오 프로젝트</h1>
+
+    <p class="about-subtitle">
+        백엔드 학습의 결과물을 축적하고, 글을 쓰고, 프로젝트를 정리하기 위해 만든 개인 사이트입니다.
+    </p>
+
+    <hr>
+
+    <h2>개요</h2>
+    <p>
+        이 프로젝트는 Django 기반으로 제작된 블로그/포트폴리오 웹사이트입니다.
+        기록 중심의 플랫폼을 스스로 구축함으로써, 프레임워크의 전반적인 동작 원리를 이해하고
+        CRUD, 인증, ORM 등 웹 개발의 필수 요소들을 실제로 경험하는 것을 목표로 했습니다.
+    </p>
+
+    <hr>
+
+    <h2>기술 스택</h2>
+    <ul>
+        <li>Django, Python</li>
+        <li>HTML/CSS (Vanilla), Django Templates</li>
+        <li>SQLite → (향후 PostgreSQL 전환 예정)</li>
+        <li>Gunicorn + Nginx 배포 예정</li>
+    </ul>
+    <hr>
+
+    <h2>주요 기능</h2>
+    <ul>
+        <li>게시글 작성, 수정, 삭제 (CRUD)</li>
+        <li>사용자 인증 기반 게시글 관리</li>
+        <li>게시글 리스트/상세 페이지</li>
+        <li>About(포트폴리오) 페이지</li>
+    </ul>
+    <hr>
+
+    <h2>프로젝트 구조도</h2>
+    <pre>
+my-web/
+ ├─ board/         
+ │   ├─ templates/
+ │   └─ views.py
+ ├─ templates/
+ │   ├─ base.html
+ │   └─ about.html
+ │   └─ index.html
+ └─ static/
+    └─ board/style.css
+    </pre>
+
+    <hr>
+
+    <h2>개선 예정</h2>
+    <ul>
+        <li>프로젝트 목록 페이지 추가</li>
+        <li>다크 모드 지원</li>
+        <li>검색 기능 추가</li>
+    </ul>
+
+</section>
+{% endblock %}

@@ -8,11 +8,11 @@ from .forms import PostForm
 from .models import Post
 
 class IndexView(generic.TemplateView):
-    template_name = 'board/index.html'
+    template_name = 'posts/index.html'
 
 
 class postListView(generic.ListView):
-    template_name = 'board/postList.html'
+    template_name = 'posts/postList.html'
     context_object_name = 'latest_post_list'
 
     def get_queryset(self):
@@ -22,13 +22,13 @@ class postListView(generic.ListView):
     
 class postDetailView(generic.DeleteView):
     model = Post
-    template_name = 'board/postDetail.html'
+    template_name = 'posts/postDetail.html'
 
 
 class postCreateView(generic.CreateView):
     model = Post
     form_class = PostForm
-    template_name = 'board/postCreateForm.html'
+    template_name = 'posts/postCreateForm.html'
     success_url = reverse_lazy('post:list')
 
     def form_valid(self, form):
@@ -36,4 +36,4 @@ class postCreateView(generic.CreateView):
         return super().form_valid(form)
 
 class AboutView(generic.TemplateView):
-    template_name = 'board/about.html'
+    template_name = 'about.html'

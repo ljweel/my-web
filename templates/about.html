@@ -1,12 +1,13 @@
-{% extends "./base.html" %}
+{% extends "base.html" %}
 {% block title %}About | ljweel.dev{% endblock %}
 
 {% block content %}
 <section class="about-container">
-    <h1 class="about-title">My Web – 개인 포트폴리오 프로젝트</h1>
+    <h1 class="about-title">My Web – 개인 블로그 프로젝트</h1>
 
     <p class="about-subtitle">
-        백엔드 학습의 결과물을 축적하고, 글을 쓰고, 프로젝트를 정리하기 위해 만든 개인 사이트입니다.
+        2025 11월부터 서비스해오고 있는 개인 사이트입니다.
+        백엔드 학습의 결과물을 축적하고, 글을 쓰고, 프로젝트를 정리하기 위해 만들었습니다.
     </p>
 
     <hr>
@@ -15,17 +16,19 @@
     <p>
         이 프로젝트는 Django 기반으로 제작된 블로그/포트폴리오 웹사이트입니다.
         기록 중심의 플랫폼을 스스로 구축함으로써, 프레임워크의 전반적인 동작 원리를 이해하고
-        CRUD, 인증, ORM 등 웹 개발의 필수 요소들을 실제로 경험하는 것을 목표로 했습니다.
+        CRUD, JWT 인증, ORM 등 웹 개발의 필수 요소들을 실제로 경험하는 것을 목표로 했습니다.
     </p>
 
     <hr>
 
     <h2>기술 스택</h2>
     <ul>
-        <li>Django, Python</li>
-        <li>HTML/CSS (Vanilla), Django Templates</li>
-        <li>SQLite → (향후 PostgreSQL 전환 예정)</li>
-        <li>Gunicorn + Nginx 배포 예정</li>
+        <li>백엔드: Django (Python), Django REST Framework (DRF)</li>
+        <li>데이터베이스: PostgreSQL</li>
+        <li>인증/인가: JWT</li>
+        <li>프론트: HTML/CSS, Django Templates </li>
+        <li>배포 (Deployment): Docker, AWS EC2</li>
+        <li>웹 서버: Gunicorn (WSGI) + Nginx (Reverse Proxy)</li>
     </ul>
     <hr>
 
@@ -41,24 +44,25 @@
     <h2>프로젝트 구조도</h2>
     <pre>
 my-web/
- ├─ board/         
- │   ├─ templates/
- │   └─ views.py
- ├─ templates/
- │   ├─ base.html
- │   └─ about.html
- │   └─ index.html
- └─ static/
-    └─ board/style.css
+ ├─ accounts/    (User 인증/회원가입 담당)
+ ├─ posts/       (Post 모델, Views 담당)
+ ├─ comments/    (Comment 모델, Views 담당)
+ │
+ ├─ config/      (settings, urls, wsgi)
+ ├─ templates/   (base.html, about.html 등 공통 템플릿)
+ ├─ static/      (공통 CSS/JS)
+ ├─ docker-compose.yml
+ └─ Dockerfile
     </pre>
 
     <hr>
 
     <h2>개선 예정</h2>
     <ul>
+        <li>DRF를 활용한 댓글 API 전환 (재귀적 Serializer 구현 예정)</li>
         <li>프로젝트 목록 페이지 추가</li>
-        <li>다크 모드 지원</li>
         <li>검색 기능 추가</li>
+        <li>카테고리 기능 추가</li>
     </ul>
 
 </section>

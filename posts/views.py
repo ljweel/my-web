@@ -1,14 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 from django.utils import timezone
 
 
 from .forms import PostForm
 from .models import Post
-
-class IndexView(generic.TemplateView):
-    template_name = 'posts/index.html'
 
 
 class postListView(generic.ListView):
@@ -25,11 +23,11 @@ class postDetailView(generic.DeleteView):
     template_name = 'posts/postDetail.html'
 
 
-class postCreateView(generic.CreateView):
+class postCreateView(LoginRequiredMixin, generic.CreateView):
     model = Post
     form_class = PostForm
     template_name = 'posts/postCreateForm.html'
-    success_url = reverse_lazy('post:list')
+    success_url = reverse_lazy('posts:list')
 
     def form_valid(self, form):
         form.instance.user = self.request.user  

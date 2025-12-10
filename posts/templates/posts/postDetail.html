@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %}{{ post.title }}{% endblock %}
+{% block title %}{{ posts.title }}{% endblock %}
 
 {% block content %}
     <div class="container">
@@ -10,11 +10,11 @@
         <h1>{{ post.title }}</h1>
         
         <div class="metadata">
-            <span>작성일: {{ post.created_at|date:"Y년 m월 d일 H:i" }}</span>
+            <span>작성일: {{ posts.created_at|date:"Y년 m월 d일 H:i" }}</span>
         </div>
 
         <div class="content">
-            {{ post.content|linebreaksbr }}
+            {{ posts.content|linebreaksbr }}
         </div>
 
         <!-- 2. 액션 버튼 (수정, 삭제, 목록으로) -->
@@ -31,7 +31,7 @@
             </form> {% endcomment %}
 
             <!-- 목록으로 돌아가기 -->
-            <a href="{% url 'post:list' %}" class="list-btn">목록으로</a>
+            <a href="{% url 'posts:list' %}" class="list-btn">목록으로</a>
         </div>
         
         <!-- 3. 댓글 섹션 (선택 사항) -->

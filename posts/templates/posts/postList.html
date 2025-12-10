@@ -4,12 +4,12 @@
 
 
 {% block content %}
-    <a href="{% url 'post:create' %}">Create Post</a>
+    <a href="{% url 'posts:create' %}">Create Post</a>
     
     {% if latest_post_list %}
         <ul>
         {% for post in latest_post_list %}
-            <li><a href="{% url 'post:detail' post.id %}">{{ post.title }}</a></li>
+            <li><a href="{% url 'posts:detail' post.id %}">{{ post.title }}</a></li>
         {% endfor %}
         </ul>
     {% else %}

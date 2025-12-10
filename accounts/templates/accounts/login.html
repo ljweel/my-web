@@ -1,0 +1,15 @@
+{% extends "base.html" %}  {% block content %}
+<h2>로그인</h2>
+
+{% if form.errors %}
+    <p style="color: red;">사용자 이름과 비밀번호가 일치하지 않습니다.</p>
+{% endif %}
+
+<form method="post" action="{% url 'accounts:login' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit">로그인</button>
+</form>
+
+{% endblock %}

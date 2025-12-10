@@ -23,6 +23,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('', IndexView.as_view(), name='index'),
     path('about/', AboutView.as_view(), name='about'),
-    path('', include('posts.urls')),
-    path('', include('comments.urls')),
+    path('posts/', include('posts.urls')),
+    path('accounts/', include('accounts.urls')),
 ]

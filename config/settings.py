@@ -45,6 +45,10 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Application definition
 
+LOGIN_REDIRECT_URL = '/'      # 로그인 성공 시 메인 페이지로 이동
+LOGOUT_REDIRECT_URL = '/'     # 로그아웃 성공 시 메인 페이지로 이동
+LOGIN_URL = '/accounts/login/' # 로그인 페이지 URL 명시 (LoginRequiredMixin에 사용됨)
+
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -55,6 +59,7 @@ INSTALLED_APPS = [
 
     "posts",
     "comments",
+    "accounts",
 ]
 
 MIDDLEWARE = [

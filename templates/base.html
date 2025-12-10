@@ -22,11 +22,10 @@
                     <a href="{% url 'posts:create' %}" class="nav-item">글쓰기</a>
                     <span class="nav-item">{{ user.username }}</span>
 
-                    <form method="post" action="{% url 'accounts:logout' %}">
+                    <form style="display: inline;" method="post" action="{% url 'accounts:logout' %}">
                         {% csrf_token %} 
                         <button type="submit" class="nav-item">로그아웃</button>
                     </form>
-                    
                 {% else %}
                     <a href="{% url 'accounts:login' %}" class="nav-item">로그인</a>
                     <a href="{% url 'accounts:register' %}" class="nav-item">회원가입</a>

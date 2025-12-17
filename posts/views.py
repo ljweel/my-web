@@ -7,7 +7,8 @@ from django.utils import timezone
 
 from .forms import PostForm
 from .models import Post
-
+from comments.forms import CommentForm
+from comments.models import Comment
 
 class postListView(generic.ListView):
     template_name = 'posts/postList.html'
@@ -21,7 +22,18 @@ class postListView(generic.ListView):
 class postDetailView(generic.DeleteView):
     model = Post
     template_name = 'posts/postDetail.html'
+    context_object_name = 'post'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comment_form'] = CommentForm()
+
+        context['comments'] = Comment.objects.filter(
+            post = self.get_object(),
+            parent__isnull=True,
+        ).order_by('created_at')
+
+        return context
 
 class postCreateView(LoginRequiredMixin, generic.CreateView):
     model = Post
@@ -30,7 +42,7 @@ class postCreateView(LoginRequiredMixin, generic.CreateView):
     success_url = reverse_lazy('posts:list')
 
     def form_valid(self, form):
-        form.instance.user = self.request.user  
+        form.instance.author = self.request.user  
         return super().form_valid(form)
 
 class AboutView(generic.TemplateView):

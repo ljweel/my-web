@@ -19,7 +19,7 @@ class postListView(generic.ListView):
             created_at__lte=timezone.now()
         ).order_by('-created_at')[:5]
     
-class postDetailView(generic.DeleteView):
+class postDetailView(generic.DetailView):
     model = Post
     template_name = 'posts/postDetail.html'
     context_object_name = 'post'

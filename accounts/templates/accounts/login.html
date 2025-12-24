@@ -1,15 +1,25 @@
-{% extends "base.html" %}  {% block content %}
-<h2>로그인</h2>
+{% extends "base.html" %}
 
-{% if form.errors %}
-    <p style="color: red;">사용자 이름과 비밀번호가 일치하지 않습니다.</p>
-{% endif %}
+{% block content %}
+<div class="grid">
+    <div></div> 
+    <article>
+        <hgroup>
+            <h2>로그인</h2>
+            <p>서비스 이용을 위해 로그인해 주세요.</p>
+        </hgroup>
 
-<form method="post" action="{% url 'accounts:login' %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-
-    <button type="submit">로그인</button>
-</form>
-
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="contrast">로그인</button>
+        </form>
+        
+        <footer style="text-align: center;">
+            <small>계정이 없으신가요? <a href="{% url 'accounts:register' %}">회원가입</a></small>
+        </footer>
+    </article>
+    
+    <div></div> 
+</div>
 {% endblock %}

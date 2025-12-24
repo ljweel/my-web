@@ -1,13 +1,32 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>회원가입</h2>
+<div class="grid">
+    <div></div>
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}  <button type="submit">가입하기</button>
-</form>
+    <article>
+        <header>
+            <h2 style="margin-bottom: 0;">회원가입</h2>
+        </header>
 
-<p>이미 계정이 있으신가요? <a href="{% url 'accounts:login' %}">로그인</a></p>
+        <form method="post">
+            {% csrf_token %}
 
+            {% for field in form %}
+                <label for="{{ field.id_for_label }}">
+                    {{ field.label }}
+                    {{ field }}
+                </label>
+            {% endfor %}
+
+            <button type="submit" class="contrast">가입하기</button>
+        </form>
+
+        <footer>
+            <small>이미 계정이 있으신가요? <a href="{% url 'accounts:login' %}">로그인</a></small>
+        </footer>
+    </article>
+    
+    <div></div>
+</div>
 {% endblock %}

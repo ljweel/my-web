@@ -1,7 +1,6 @@
 .env
 venv/
 staticfiles/
-.dockerignore
 
 # ssl 인증키 제외
 *.pem

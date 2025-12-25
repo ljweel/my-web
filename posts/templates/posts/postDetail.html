@@ -6,28 +6,32 @@
 
 {% block content %}
     <div class="container">
-        <h1>{{ post.title }}</h1>
-        
-        <div class="metadata">
-            <span>작성일: {{ post.created_at|date:"Y.m.d H:i" }}</span>
-        </div>
-
-        <div class="content">
-            {{ post.content|linebreaksbr }}
-        </div>
+        <article>
+            <header>
+                <h3>{{ post.title }}</h3>
+                <span>{{ post.created_at|date:"Y.m.d H:i" }}</span>
+            </header>
             
+            <div class="content">
+                {{ post.content|linebreaksbr }}
+            </div>
+        </article>
+        <br>
         <div class="comments-section">
-            <h2>댓글</h2>
+            <h4>전체 댓글</h4>
             
             {% if comments %}
                 {% for comment in comments %}
-                    <div class="comment">
-                        <div class="comment-author">{{ comment.author }} | {{ comment.created_at|date:"Y.m.d H:i" }}</div>
+
+                    <article>
+                        <header>
+                            <div class="comment-author">{{ comment.author }} | {{ comment.created_at|date:"Y.m.d H:i" }}</div>
+                        </header>
                         <div class="comment-text">{{ comment.comment_text|linebreaksbr }}</div>
-                    </div>
+                    </article>
                 {% endfor %}
             {% else %}
-                <p>아직 댓글이 없습니다.</p>
+                
             {% endif %}
             
             <form method="POST" action="{% url 'posts:comment_create' pk=post.pk %}">

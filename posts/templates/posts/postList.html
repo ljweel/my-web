@@ -4,15 +4,34 @@
 
 
 {% block content %}
-    <a href="{% url 'posts:create' %}">글 쓰기</a>
-    
+<main class="container">
+    <h1>최신 글</h1>
+
     {% if latest_post_list %}
-        <ul>
         {% for post in latest_post_list %}
-            <li><a href="{% url 'posts:detail' post.id %}">{{ post.title }}</a></li>
+            <article>
+                
+                <div class="grid">
+                    
+                    <div>
+                        <hgroup>
+                            <a href="{% url 'posts:detail' post.id %}" class="contrast" style='text-decoration-line: none;'>
+                                <strong>{{ post.title }}</strong>
+                                <p>{{ post.content|truncatechars:100 }}</p>
+                            </a>
+                        </hgroup>
+                        <div>category | {{ post.created_at|date:"Y.m.d H:i" }}</div>
+                    </div>
+                        
+                    <div>
+                        {# image #}
+                    </div>
+                        
+                    </div>
+            </article>
         {% endfor %}
-        </ul>
     {% else %}
         <p>No Post</p>
     {% endif %}
+</main>
 {% endblock %}

@@ -12,18 +12,18 @@
     <header class="container">
         <nav>
             <ul>
-                <li><a href='/'><strong>ljweel.dev</strong></a></li>
+                <li><a href='/' class="contrast"><strong>ljweel.dev</strong></a></li>
             </ul>
             <ul>
                 <li>
-                    <a href="{% url 'posts:list' %}">Post</a>
+                    <a href="{% url 'posts:list' %}" class="contrast">Post</a>
                 </li>
                 <li>
-                    <a href="{% url 'about' %}">About</a>
+                    <a href="{% url 'about' %}" class="contrast">About</a>
                 </li>
                 {% if user.is_authenticated %}
                     <li>
-                        <a href="{% url 'posts:create' %}">글쓰기</a>
+                        <a href="{% url 'posts:create' %}" class="contrast">글쓰기</a>
                     </li>
                     <li>
                         <span>{{ user.username }}</span>
@@ -38,10 +38,10 @@
                     </li>
                 {% else %}
                     <li>
-                        <a href="{% url 'accounts:login' %}">로그인</a>
+                        <a href="{% url 'accounts:login' %}" class="contrast">로그인</a>
                     </li>
                     <li>
-                        <a href="{% url 'accounts:register' %}">회원가입</a>
+                        <a href="{% url 'accounts:register' %}" class="contrast">회원가입</a>
                     </li>
                 {% endif %}
             </ul>

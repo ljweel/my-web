@@ -22,7 +22,7 @@
 ### 2. docker 내리기
 `docker compose --profile tunnel down`
 
-(컨테이너, 이미지, 볼륨 삭제 관련 글)[https://code-angie.tistory.com/173]
+[컨테이너, 이미지, 볼륨 삭제 관련 글](https://code-angie.tistory.com/173)
 
 ### 3. 환경 변수 설정
 `.env` 파일에 Cloudflare Tunnel 토큰을 설정합니다:

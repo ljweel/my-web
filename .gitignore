@@ -1,12 +1,6 @@
 .env
 venv/
-staticfiles/
 
 # ssl 인증키 제외
 *.pem
 *.key
-
-# postgresql db 제외
-/data
-
-*.pyc

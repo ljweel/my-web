@@ -13,16 +13,16 @@ jobs:
     steps:
       - name: Create SSH Key
         run: |
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/private-key.pem
+          echo "${{ secrets.SSH_PRIV_KEY }}" > ~/private-key.pem
           chmod 600 ~/private-key.pem
 
       - name: Add known host
         run: |
           mkdir -p ~/.ssh
-          ssh-keyscan -p 2283 ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts
+          ssh-keyscan -p ${{ secrets.PORT }} ${{ secrets.HOST }} >> ~/.ssh/known_hosts
 
       - name: Execute Pull on Remote Server
         run: |
-          ssh -i ~/private-key.pem -p 2283 ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} \
+          ssh -i ~/private-key.pem -p ${{ secrets.PORT }} ${{ secrets.USERNAME }}@${{ secrets.HOST }} \
           "cd my-web/ && git pull origin main"
 

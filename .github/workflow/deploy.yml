@@ -1,0 +1,20 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches: [ main ]  # main 브랜치에 push될 때만 실행
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH Remote Commands
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd my-web/  # 서버 내 프로젝트 경로
+            git pull origin main       # 최신 코드 반영

@@ -1,6 +1,0 @@
-.env
-venv/
-
-# ssl 인증키 제외
-*.pem
-*.key

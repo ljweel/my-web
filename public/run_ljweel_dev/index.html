@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/run.style.css">
+    <script src="static/run.js" defer></script>
+    <title>run.ljweel.dev</title>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            run.ljweel.dev
+        </div>
+        <div class="actions">
+            <div class="lang-select">
+                Python
+            </div>
+            <button id="runBtn">Run</button>
+        </div>
+    </header>
+        
+    <main class="main">
+        <div class="left">
+
+            <div class="panel code-panel">
+                <h3>CODE</h3>
+                <textarea id="code">print("Hello, World!")</textarea>
+            </div>
+                
+            <div class="panel input-panel">
+                <h3>INPUT</h3>
+                <textarea id="input"></textarea>
+            </div>
+
+        </div>
+
+        <div class="right">
+
+            <div class="panel output-panel">
+                <h3>OUTPUT</h3>
+                <textarea id="output" readonly></textarea>
+            </div>
+            <div class="panel debug-panel">
+                <h3>DEBUG</h3>
+                <textarea id="debug" readonly></textarea>
+            </div>
+
+        </div>
+
+    </main>
+</body>
+</html>

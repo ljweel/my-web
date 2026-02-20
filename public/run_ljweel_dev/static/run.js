@@ -6,11 +6,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const outputArea = document.getElementById("output");
     const debugArea = document.getElementById("debug");;
 
+    
     runBtn.addEventListener("click", async function () {
-
+        const startTime = performance.now();
         const code = codeArea.value;
         const input = inputArea.value;
-
+        
+        runBtn.disabled = true;
         try {
             const result = await execute(code, input);
 
@@ -19,6 +21,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         } catch (err) {
             debugArea.value = err.toString();
+        }
+        finally {
+            const endTime = performance.now();
+            const duration = endTime - startTime;
+            
+            const remainingTime = Math.max(0, 1000 - duration);
+            await new Promise(r => setTimeout(r, remainingTime));
+            runBtn.disabled = false;
         }
     });
 

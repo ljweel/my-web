@@ -73,6 +73,18 @@ async function execute(code, input) {
     console.log(jobData);
     return {
         output: jobData.result.stdout,
-        debug: jobData.result.stderr
+        debug: debugMsg(jobData),
     };
+}
+
+function debugMsg(jobData) {
+    const { stderr, exit_code, usage_info } = jobData.result;
+    const { cpu_time_ms, wall_time_ms } = usage_info;
+
+    return [
+        stderr,
+        `exit code: ${exit_code}`,
+        `cpu time: ${cpu_time_ms}ms`,
+        `wall time: ${wall_time_ms}ms`
+    ].join('\n');
 }

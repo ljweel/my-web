@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             outputArea.value = result.output;
             debugArea.value = result.debug;
+            console.log("debug:" + debug);
 
         } catch (err) {
             debugArea.value = err.toString();
@@ -70,7 +71,6 @@ async function execute(code, input) {
             throw new Error(data.message);
         }
     }
-    console.log(jobData);
     return {
         output: jobData.result.stdout,
         debug: debugMsg(jobData),
@@ -83,8 +83,8 @@ function debugMsg(jobData) {
 
     return [
         stderr,
-        `exit code: ${exit_code}`,
-        `cpu time: ${cpu_time_ms}ms`,
-        `wall time: ${wall_time_ms}ms`
+        `exit code: ${exit_code ?? "N/A"}`,
+        `cpu time: ${cpu_time_ms ?? 0}ms`,
+        `wall time: ${wall_time_ms ?? 0}ms`,
     ].join('\n');
 }

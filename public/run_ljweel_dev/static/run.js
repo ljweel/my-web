@@ -64,6 +64,12 @@ async function execute(code, input) {
 
         if (data.status === "COMPLETED") {
             jobData = data;
+            if (jobData.result.outcome == "STDOUT_LIMIT_EXCEEDED") {
+                alert("출력이 128KB를 초과하였습니다. 출력량을 줄여주세요.");
+            }
+            else if (jobData.result.outcome == "STDERR_LIMIT_EXCEEDED") {
+                alert("디버그 출력이 128KB를 초과하였습니다. 디버그 출력량을 줄여주세요.");
+            }
             break;
         }
 

@@ -10,3 +10,10 @@ codeArea.addEventListener("keydown", (e) => {
         codeArea.selectionStart = codeArea.selectionEnd = start + 1;
     }
 });
+
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && e.ctrlKey) {
+        e.preventDefault();
+        document.getElementById("runBtn").click();
+    }
+});

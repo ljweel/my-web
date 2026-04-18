@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
-
+    let isRunning = false;
+    
     const runBtn = document.getElementById("runBtn");
     const codeArea = document.getElementById("code");
     const inputArea = document.getElementById("input");
@@ -8,6 +9,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     
     runBtn.addEventListener("click", async function () {
+        if (isRunning) return;
+        isRunning = true;
+
         const startTime = performance.now();
         const code = codeArea.value;
         const input = inputArea.value;
@@ -28,6 +32,8 @@ document.addEventListener("DOMContentLoaded", function () {
             
             const remainingTime = Math.max(0, 1000 - duration);
             await new Promise(r => setTimeout(r, remainingTime));
+
+            isRunning = false;
             runBtn.disabled = false;
         }
     });
@@ -50,13 +56,9 @@ async function execute(code, input) {
 
     const data = await jobStatus.json();
     const jobId = data.job_id;
-    
-    
     let jobData;
 
     while (true) {
-
-        
         const statusRes = await fetch(`${baseUrl}/jobs/${jobId}`);
         const data = await statusRes.json();
         

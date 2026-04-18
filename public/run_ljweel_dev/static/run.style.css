@@ -66,6 +66,10 @@ textarea {
     resize: none;
 }
 
+#code {
+    tab-size: 4;
+}
+
 @media (max-width: 900px) {
     .main {
         grid-template-columns:  1fr; /* 900px 이하일 때*/

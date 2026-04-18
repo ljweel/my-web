@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const codeArea = document.getElementById("code");
     const inputArea = document.getElementById("input");
     const outputArea = document.getElementById("output");
-    const debugArea = document.getElementById("debug");;
+    const debugArea = document.getElementById("debug");
 
     
     runBtn.addEventListener("click", async function () {
@@ -18,7 +18,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
             outputArea.value = result.output;
             debugArea.value = result.debug;
-            console.log("debug:" + debug);
 
         } catch (err) {
             debugArea.value = err.toString();
@@ -57,11 +56,10 @@ async function execute(code, input) {
 
     while (true) {
 
-        await new Promise(r => setTimeout(r, 500)); // 0.5초 대기
-
+        
         const statusRes = await fetch(`${baseUrl}/jobs/${jobId}`);
         const data = await statusRes.json();
-
+        
         if (data.status === "COMPLETED") {
             jobData = data;
             if (jobData.result.outcome == "STDOUT_LIMIT_EXCEEDED") {
@@ -72,10 +70,12 @@ async function execute(code, input) {
             }
             break;
         }
-
+        
         if (data.status === "FAILED") {
             throw new Error(data.message);
         }
+        
+        await new Promise(r => setTimeout(r, 500)); // 0.5초 대기
     }
     return {
         output: jobData.result.stdout,

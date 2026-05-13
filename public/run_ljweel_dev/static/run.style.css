@@ -78,6 +78,12 @@ h3 {
     font-size: 20px;
 }
 
+#code-len-info {
+    float: right;
+    font-size: 16px;
+    font-weight: 400;
+}
+
 @media (max-width: 900px) {
     .main {
         grid-template-columns:  1fr; /* 900px 이하일 때*/

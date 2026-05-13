@@ -17,3 +17,14 @@ document.addEventListener("keydown", (e) => {
         document.getElementById("runBtn").click();
     }
 });
+
+const textarea = document.getElementById("code");
+const info = document.getElementById("code-len-info");
+
+function updateByteLength() {
+    const bytes = new TextEncoder().encode(textarea.value).length;
+    info.textContent = `${bytes} bytes`;
+}
+
+textarea.addEventListener("input", updateByteLength);
+updateByteLength();

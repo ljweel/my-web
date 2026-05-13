@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const inputArea = document.getElementById("input");
     const outputArea = document.getElementById("output");
     const debugArea = document.getElementById("debug");
-
+    const languageSelect = document.querySelector('#langSelect');
     
     runBtn.addEventListener("click", async function () {
         if (isRunning) return;
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
         
         runBtn.disabled = true;
         try {
-            const result = await execute(code, input);
+            const result = await execute(code, input, languageSelect.value);
 
             outputArea.value = result.output;
             debugArea.value = result.debug;
@@ -42,13 +42,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-async function execute(code, input) {
+async function execute(code, input, language) {
     const baseUrl = "https://run.ljweel.dev";
     const jobStatus = await fetch(`${baseUrl}/execute`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            "language": "python",
+            "language": language,
             "source_code": code,
             "stdin": input,
         })
